@@ -11,12 +11,12 @@ Usage
 
 Build container from Dockerfile using
 ```
-docker build -t sergekatzmann/openvas8_complete .
+docker build -t sergekatzmann/openvas8-complete .
 ```
 
 Run container in daemon mode with
 ```
-docker run -d -p 443:443 -p 9390:9390 -p 9391:9391 -p 9292:9292 sergekatzmann/openvas8_complete
+docker run -d -p 443:443 -p 9390:9390 -p 9391:9391 -p 9292:9292 sergekatzmann/openvas8-complete
 ```
 
 Connect to running container with
