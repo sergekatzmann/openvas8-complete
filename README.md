@@ -47,6 +47,7 @@ docker exec -it <container_id> /bin/bash
 ```
 
 Running arachni web gui.
+
 Following docker run command will create a non persistent container and start arachni web gui on port 9292. You can stop the container by using CTRL-C.
 ```
 docker run --rm=true -p 9292:9292 sergekatzmann/openvas8-complete /opt/arachni/bin/arachni_web
