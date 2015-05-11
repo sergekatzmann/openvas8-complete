@@ -1,8 +1,10 @@
-# sergekatzmann/openvas8-complete
-Docker container for OpenVAS8.
+# Docker container for OpenVAS8.
+Objective
 ------------
 The purpose of this project is to create an complete, ready to use, installation of OpenVAS8 on debian wheezy 7.8 with all needed additional software packages in compatible / recommended versions - dirb, nikto, redis, nmap, wapiti. Arachni is installed in the latest version. It seems that OpenVAS is no more compatible with this product.
 
+Motivation
+------------
 This is my first OpenVAS8 container with the main purpose of getting clean testing / auditing environment in no time.
 I am planning on creating a set of containers to build an OpenVAS8 testing cluster with master node and slaves including easy to update architecture and volumes for configured data.
 
