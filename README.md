@@ -1,4 +1,4 @@
-# openvas8_complete
+# openvas8-complete
 Docker container for OpenVAS8
 
 Requirements
