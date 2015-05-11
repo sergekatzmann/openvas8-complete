@@ -27,3 +27,4 @@ docker exec -it <container_id> /bin/bash
 Thanks
 ------
 Thanks to Mike Splain for his great OpenVAS7 Docker container (https://github.com/mikesplain/openvas-docker)
+Thanks to  Simon Davies, ProCheckUp for his "Installing OpenVAS 8 Beta From Source On Debian" article. (http://www.procheckup.com/blog/installing-openvas-8-beta-from-source-on-debian.aspx)
