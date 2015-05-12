@@ -1,6 +1,5 @@
 #!/bin/bash
 cd /usr/local/sbin
-./openvasmd --rebuild
 ./openvassd
 echo -e "Open-VAS Scanner Started..."
 ./openvasmd
