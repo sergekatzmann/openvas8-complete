@@ -10,12 +10,11 @@ ENV LANG C.UTF-8
 ENV LANGUAGE en  
 ENV LC_ALL C.UTF-8
 
-RUN apt-get update -y && apt-get install locales debconf -y
-RUN dpkg-reconfigure locales && \
-    locale-gen C.UTF-8 && \
-    /usr/sbin/update-locale LANG=C.UTF-8
-
-RUN apt-get install build-essential \
+RUN apt-get update -y && apt-get install locales debconf -y && \
+	dpkg-reconfigure locales && \
+	locale-gen C.UTF-8 && \
+	/usr/sbin/update-locale LANG=C.UTF-8 && \
+apt-get install build-essential \
 					bison \ 
 					flex \ 
 					cmake \ 
@@ -123,21 +122,20 @@ RUN apt-get install build-essential \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \		
-    rm -rf /openvas-src
-RUN	mkdir /redis && \
+    rm -rf /openvas-src && \
+mkdir /redis && \
 	cd /redis && \
 	wget http://download.redis.io/releases/redis-2.8.19.tar.gz  && \
 		tar zxvf redis-2.8.19.tar.gz && \
 		cd redis-2.8.19 && \
 		make -j $(nproc)&& \
 		make install && \
-		rm -fr /redis
-	
-RUN	apt-get remove heimdal-dev -y
-RUN	apt-get install curl \
-					libcurl4-gnutls-dev \
-					libkrb5-dev -y
-RUN mkdir /dirb && \
+		rm -fr /redis && \
+apt-get remove heimdal-dev -y && \
+apt-get install curl \
+		libcurl4-gnutls-dev \
+		libkrb5-dev -y && \
+mkdir /dirb && \
     cd /dirb && \
     wget -nv http://downloads.sourceforge.net/project/dirb/dirb/2.22/dirb222.tar.gz && \
         tar -zxvf dirb222.tar.gz && \
@@ -145,14 +143,14 @@ RUN mkdir /dirb && \
         chmod 700 -R * && \
         ./configure && \
         make -j $(nproc)&& \
-        make install
-RUN cd /tmp && \
+        make install && \
+cd /tmp && \
     wget -nv http://downloads.arachni-scanner.com/arachni-1.1-0.5.7-linux-x86_64.tar.gz && \
         tar -zxvf arachni-1.1-0.5.7-linux-x86_64.tar.gz && \
 		rm -f arachni-1.1-0.5.7-linux-x86_64.tar.gz && \
         mv arachni-1.1-0.5.7 /opt/arachni && \
-        ln -s /opt/arachni/bin/* /usr/local/bin/
-RUN cd ~ && \
+        ln -s /opt/arachni/bin/* /usr/local/bin/ && \
+cd ~ && \
     wget -nv https://github.com/sullo/nikto/archive/master.zip && \
     unzip master.zip -d /tmp && \
     mv /tmp/nikto-master/program /opt/nikto && \
@@ -160,34 +158,31 @@ RUN cd ~ && \
 	rm -f ~/master.zip && \
     echo "EXECDIR=/opt/nikto\nPLUGINDIR=/opt/nikto/plugins\nDBDIR=/opt/nikto/databases\nTEMPLATEDIR=/opt/nikto/templates\nDOCDIR=/opt/nikto/docs" >> /opt/nikto/nikto.conf && \
     ln -s /opt/nikto/nikto.pl /usr/local/bin/nikto.pl && \
-    ln -s /opt/nikto/nikto.conf /etc/nikto.conf
-	
-RUN cd /tmp && wget -nv https://nmap.org/dist/nmap-5.51-1.x86_64.rpm && \
+    ln -s /opt/nikto/nikto.conf /etc/nikto.conf && \
+cd /tmp && wget -nv https://nmap.org/dist/nmap-5.51-1.x86_64.rpm && \
 	alien -i nmap-5.51-1.x86_64.rpm && \
-	rm -f nmap-5.51-1.x86_64.rpm
-	
-RUN cd /tmp && \
+	rm -f nmap-5.51-1.x86_64.rpm && \
+cd /tmp && \
 	pip install --upgrade pip && \
 	wget -nv -O wapiti-2.3.0.tar.gz "http://downloads.sourceforge.net/project/wapiti/wapiti/wapiti-2.3.0/wapiti-2.3.0.tar.gz?r=http://sourceforge.net/projects/wapiti/files/wapiti/wapiti-2.3.0/&amp;ts=1391931386&amp;use_mirror=heanet" && \
 	tar zxvf wapiti-2.3.0.tar.gz && \
 	cd wapiti-2.3.0 && \
 	python setup.py install	&& \
 	ln -s /usr/local/bin/wapiti /usr/bin/wapiti && \
-	rm -f /tmp/wapiti-2.3.0.tar.gz
-	
-RUN apt-get clean -yq && \
+	rm -f /tmp/wapiti-2.3.0.tar.gz && \
+apt-get clean -yq && \
     apt-get autoremove -yq && \
-    apt-get purge -y --auto-remove build-essential cmake
-
-RUN wget -nv https://svn.wald.intevation.org/svn/openvas/trunk/tools/openvas-check-setup --no-check-certificate
+    apt-get purge -y --auto-remove build-essential cmake && \
+cd / && \
+wget -nv https://svn.wald.intevation.org/svn/openvas/trunk/tools/openvas-check-setup --no-check-certificate
 	
 ADD ./redis.conf /etc/redis.conf
-RUN echo "\nunixsocket /tmp/redis.sock" >> /etc/redis.conf && \
-	sed -i 's#daemonize yes#daemonize no#g' /etc/redis.conf
 ADD ./open-vas-8-start.sh /open-vas-8-start.sh
 ADD ./setup.sh /setup.sh
-RUN chmod 700 /open-vas-8-start.sh && chmod 700 /openvas-check-setup && chmod 700 /setup.sh
-RUN /setup.sh
+RUN chmod 700 /open-vas-8-start.sh && \
+	chmod 700 /openvas-check-setup && \
+	chmod 700 /setup.sh && \
+	/setup.sh
 #OpenVAS 443 9390 9391 Arachni Web 9292
 EXPOSE 443 9390 9391 9292
 CMD ["./open-vas-8-start.sh"]
