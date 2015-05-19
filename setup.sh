@@ -10,9 +10,13 @@ openvas-scapdata-sync
 openvas-certdata-sync
 openvas-mkcert-client -n -i
 
+echo "Creating the encryption key. This might take a while ... "
 openvasmd --create-credentials-encryption-key
 
+echo "Rebuilding ... "
 openvasmd --rebuild
+
+echo "Creating admin user ... "
 openvasmd --create-user=admin --role=Admin
 openvasmd --user=admin --new-password=openvas
 
