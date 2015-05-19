@@ -9,6 +9,9 @@ openvas-nvt-sync
 openvas-scapdata-sync
 openvas-certdata-sync
 openvas-mkcert-client -n -i
+
+openvasmd --create-credentials-encryption-key
+
 openvasmd --rebuild
 openvasmd --create-user=admin --role=Admin
 openvasmd --user=admin --new-password=openvas
