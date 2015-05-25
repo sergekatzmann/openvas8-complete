@@ -14,7 +14,7 @@ echo "Creating the encryption key. This might take a while ... "
 openvasmd --create-credentials-encryption-key
 
 echo "Rebuilding ... "
-openvasmd --rebuild
+openvasmd --rebuild --progress
 
 echo "Creating admin user ... "
 openvasmd --create-user=admin --role=Admin
