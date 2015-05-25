@@ -65,6 +65,7 @@ apt-get install build-essential \
 					texlive-latex-recommended \
 					texlive-latex-extra \
 					htmldoc \
+					haveged \
 					-y --no-install-recommends --fix-missing && \				
     mkdir /openvas-src && \
     cd /openvas-src && \
