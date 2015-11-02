@@ -69,17 +69,17 @@ apt-get install build-essential \
 					-y --no-install-recommends --fix-missing && \				
     mkdir /openvas-src && \
     cd /openvas-src && \
-		wget -nv http://wald.intevation.org/frs/download.php/2067/openvas-libraries-8.0.3.tar.gz && \
-		wget -nv http://wald.intevation.org/frs/download.php/2071/openvas-scanner-5.0.3.tar.gz && \
-		wget -nv http://wald.intevation.org/frs/download.php/2075/openvas-manager-6.0.3.tar.gz && \
-		wget -nv http://wald.intevation.org/frs/download.php/2079/greenbone-security-assistant-6.0.3.tar.gz && \
-		wget -nv http://wald.intevation.org/frs/download.php/1987/openvas-cli-1.4.0.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/2191/openvas-libraries-8.0.5.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/2129/openvas-scanner-5.0.4.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/2195/openvas-manager-6.0.6.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/2200/greenbone-security-assistant-6.0.6.tar.gz && \
+		wget -nv http://wald.intevation.org/frs/download.php/2209/openvas-cli-1.4.3.tar.gz && \
 		wget -nv http://wald.intevation.org/frs/download.php/1975/openvas-smb-1.0.1.tar.gz && \
-		tar zxvf openvas-libraries-8.0.3.tar.gz && \
-		tar zxvf openvas-scanner-5.0.3.tar.gz && \
-		tar zxvf openvas-manager-6.0.3.tar.gz && \
-		tar zxvf greenbone-security-assistant-6.0.3.tar.gz && \
-		tar zxvf openvas-cli-1.4.0.tar.gz && \
+		tar zxvf openvas-libraries-8.0.5.tar.gz && \
+		tar zxvf openvas-scanner-5.0.4.tar.gz && \
+		tar zxvf openvas-manager-6.0.6.tar.gz && \
+		tar zxvf greenbone-security-assistant-6.0.6.tar.gz && \
+		tar zxvf openvas-cli-1.4.3.tar.gz && \
 		tar zxvf openvas-smb-1.0.1.tar.gz && \
     cd /openvas-src/openvas-smb-1.0.1 && \
         mkdir build && \
@@ -88,35 +88,35 @@ apt-get install build-essential \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \
-    cd /openvas-src/openvas-libraries-8.0.3 && \
+    cd /openvas-src/openvas-libraries-8.0.5 && \
         mkdir build && \
         cd build && \
         cmake .. && \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \		
-	cd /openvas-src/openvas-scanner-5.0.3 && \
+	cd /openvas-src/openvas-scanner-5.0.4 && \
         mkdir build && \
         cd build && \
         cmake .. && \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \	
-	cd /openvas-src/openvas-manager-6.0.3 && \
+	cd /openvas-src/openvas-manager-6.0.6 && \
         mkdir build && \
         cd build && \
         cmake .. && \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \			
-	cd /openvas-src/greenbone-security-assistant-6.0.3 && \
+	cd /openvas-src/greenbone-security-assistant-6.0.6 && \
         mkdir build && \
         cd build && \
         cmake .. && \
         make -j $(nproc)&& \
         make install && \
 		make rebuild_cache && \				
-	cd /openvas-src/openvas-cli-1.4.0 && \
+	cd /openvas-src/openvas-cli-1.4.3 && \
         mkdir build && \
         cd build && \
         cmake .. && \
